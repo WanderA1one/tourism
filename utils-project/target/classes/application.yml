@@ -1,0 +1,6 @@
+upload:
+  qiniu:
+    ak: A6Ouvt-dG--wexH1SBBETv1F9dJi3SFtxC_c2OAV
+    sk: 2Mm0cVu3BtzIT_lotpZpC4o4Sr3og_6D9-6f9u_a
+    bucketname: tourism-photo
+    url: http://qge4tt7qi.hd-bkt.clouddn.com/

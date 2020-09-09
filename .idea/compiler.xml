@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="utils-project" />
+        <module name="pojo-project" />
+        <module name="scenicSpot-project" />
+        <module name="admin-project" />
+        <module name="notice-project" />
+        <module name="eureka-project" />
+        <module name="config-project" />
+        <module name="order-project" />
+        <module name="elasticSearch-project" />
+        <module name="image-project" />
+        <module name="customer-project" />
+        <module name="zuul-project" />
+        <module name="information-project" />
+        <module name="ScenicSpot" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="comment-project" target="1.8" />
+      <module name="img-project" target="1.8" />
+      <module name="pay-project" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ScenicSpot" options="-parameters" />
+      <module name="admin-project" options="-parameters" />
+      <module name="config-project" options="-parameters" />
+      <module name="customer-project" options="-parameters" />
+      <module name="elasticSearch-project" options="-parameters" />
+      <module name="eureka-project" options="-parameters" />
+      <module name="image-project" options="-parameters" />
+      <module name="img-project" options="-parameters" />
+      <module name="information-project" options="-parameters" />
+      <module name="notice-project" options="-parameters" />
+      <module name="order-project" options="-parameters" />
+      <module name="pojo-project" options="-parameters" />
+      <module name="scenicSpot-project" options="-parameters" />
+      <module name="tourism" options="-parameters" />
+      <module name="utils-project" options="-parameters" />
+      <module name="zuul-project" options="-parameters" />
+    </option>
+  </component>
+</project>

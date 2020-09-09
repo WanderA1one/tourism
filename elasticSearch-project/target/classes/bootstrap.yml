@@ -1,0 +1,16 @@
+server:
+  port: 8087
+spring:
+  application:
+    name: elasticSearch-project
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: config-project
+      name: neo-config
+      profile: dev
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8081/eureka

@@ -1,0 +1,19 @@
+server:
+  port: 8088
+spring:
+  application:
+    name: information-project
+  cloud:
+    config:
+      name: neo-config
+      profile: dev
+      discovery:
+        service-id: config-project
+        enabled: true
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8081/eureka
+feign:
+  hystrix:
+    enabled: true

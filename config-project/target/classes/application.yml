@@ -1,0 +1,17 @@
+server:
+  port: 8070
+spring:
+  application:
+    name: config-project
+  #使用本地的方式
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/properties/
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8081/eureka

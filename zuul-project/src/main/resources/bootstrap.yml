@@ -1,0 +1,22 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: zuul-project
+  cloud:
+    config:
+      name: neo-config
+      profile: dev
+      discovery:
+        service-id: config-project
+        enabled: true
+#zuul转发无法携带cookie
+zuul:
+  sensitive-headers:
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8081/eureka
+ribbon:
+  ReadTimeOut: 10000
+  ConnectTimeOut: 10000
