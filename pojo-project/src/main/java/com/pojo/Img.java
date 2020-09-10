@@ -18,4 +18,6 @@ public class Img {
     private String imgUrl;//图片路径
     @Column(name = "img_title")
     private String imgTitle;//图片标题
+    @Column(name = "scenic_spot_id")
+    private String scenicSpotId;//景点编号
 }

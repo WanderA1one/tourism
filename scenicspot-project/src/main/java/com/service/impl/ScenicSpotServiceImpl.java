@@ -27,4 +27,9 @@ public class ScenicSpotServiceImpl implements ScenicSpotService {
         resultList.setTotal(totalElements);
         return resultList;
     }
+
+    @Override
+    public ScenicSpot finyByScenicSpotId(String scenicSpotId) {
+        return scenicSpotDao.findById(scenicSpotId).get();
+    }
 }

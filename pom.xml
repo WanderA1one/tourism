@@ -22,6 +22,8 @@
         <module>order-project</module>
         <module>notice-project</module>
         <module>image-project</module>
+        <module>pay-project</module>
+        <module>comment-project</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
