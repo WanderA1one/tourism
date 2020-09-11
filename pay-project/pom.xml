@@ -50,5 +50,11 @@
             <artifactId>utils-project</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <!-- pay -->
+        <dependency>
+            <groupId>com.alipay.sdk</groupId>
+            <artifactId>alipay-sdk-java</artifactId>
+            <version>4.10.90.ALL</version>
+        </dependency>
     </dependencies>
 </project>

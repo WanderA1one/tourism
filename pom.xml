@@ -15,7 +15,7 @@
         <module>config-project</module>
         <module>utils-project</module>
         <module>customer-project</module>
-        <module>scenicSpot-project</module>
+        <module>scenicspot-project</module>
         <module>admin-project</module>
         <module>elasticSearch-project</module>
         <module>information-project</module>
@@ -94,6 +94,11 @@
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
                 <version>2.9.2</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alipay.sdk</groupId>
+                <artifactId>alipay-sdk-java</artifactId>
+                <version>4.10.90.ALL</version>
             </dependency>
         </dependencies>
 

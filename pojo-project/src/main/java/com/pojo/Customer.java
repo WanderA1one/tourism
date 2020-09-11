@@ -37,4 +37,6 @@ public class Customer {
     private String customerImg;//头像
     @Column(name = "customer_email")
     private String customerEmail;
+    @Column(name = "customer_code")
+    private String customerCode;
 }

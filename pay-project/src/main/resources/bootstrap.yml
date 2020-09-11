@@ -2,7 +2,7 @@ server:
   port: 8092
 spring:
   application:
-    name: notice-project
+    name: pay-project
   cloud:
     config:
       name: neo-config
