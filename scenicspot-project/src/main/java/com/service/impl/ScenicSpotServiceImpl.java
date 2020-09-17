@@ -15,6 +15,18 @@ import java.util.List;
 public class ScenicSpotServiceImpl implements ScenicSpotService {
     @Autowired
     private ScenicSpotDao scenicSpotDao;
+
+    @Override
+    public ResultList findAllScenic() {
+        List<ScenicSpot> all = scenicSpotDao.findAll();
+
+        ResultList resultList = new ResultList();
+
+        resultList.setList(all);
+
+        return resultList;
+    }
+
     @Override
     public ResultList<ScenicSpot> findAllScenicSpots(Integer page, Integer size) {
 

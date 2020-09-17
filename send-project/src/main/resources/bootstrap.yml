@@ -1,0 +1,28 @@
+server:
+  port: 8900
+spring:
+  application:
+    name: send-project
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: config-project
+      name: neo-config
+      profile: dev
+  mail:
+    host: smtp.qq.com
+    username: 496908071@qq.com
+    password: rrrdbjmjnelebjjf
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8081/eureka

@@ -1,11 +1,16 @@
 package com.controller;
 
 import com.pojo.Customer;
+import com.pojo.CustomerReq;
 import com.pojo.ResultList;
 import com.service.ICustomerService;
+import com.util.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,17 +19,41 @@ import java.util.UUID;
 
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:8080",allowCredentials = "true")
 @RequestMapping("/customer")
 public class CustomerController {
-
+    @Autowired
+    TokenUtils tokenUtils;
+    @Autowired
+    RedisTemplate redisTemplate;
     @Autowired
     ICustomerService iCustomerService;
+    @RequestMapping("/check")
+    public Customer check(HttpServletRequest request){
+        try {
+            Customer customerByToken = tokenUtils.findCustomerByToken(request);
+            return customerByToken;
+        }catch (Exception e){
+            return null;
+        }
+    }
 
     @RequestMapping("/customerLogin")
     public String customerLogin(@RequestBody Customer customer){
         return iCustomerService.customerLogin(customer);
     }
+
+    @RequestMapping("/sendMail")
+    public String sendMail(@RequestBody Map map){
+        Object email = map.get("email");
+        return iCustomerService.sendMail(email.toString());
+    }
+
+    @RequestMapping("/registry")
+    public String registry(@RequestBody CustomerReq customerReq){
+        return iCustomerService.registry(customerReq);
+    }
+
 
     @RequestMapping(value = "/findAllCustomers/{page}/{size}", method = RequestMethod.GET)
     public ResultList findAllCustomers(@PathVariable("page") Integer page,@PathVariable("size") Integer size){

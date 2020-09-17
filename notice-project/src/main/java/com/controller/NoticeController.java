@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:8080",allowCredentials = "true")
 @RequestMapping("/notice")
 public class NoticeController {
     @Autowired

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:8080",allowCredentials = "true")
 @RequestMapping("/info")
 public class InfoController {
     @Autowired

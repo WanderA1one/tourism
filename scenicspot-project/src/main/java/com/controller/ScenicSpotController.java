@@ -10,12 +10,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8080",allowCredentials = "true")
+@CrossOrigin(origins ="http://localhost:8080",allowCredentials = "true")
 @RequestMapping("/scenicSpot")
 public class ScenicSpotController {
     @Autowired
     private ScenicSpotService scenicSpotService;
-
+    @RequestMapping("/findAll")
+    public ResultList findAllScenic(){
+        return scenicSpotService.findAllScenic();
+    }
     @RequestMapping("/findAll/{page}/{size}")
     public ResultList getAllScenicSpotByPage(@PathVariable("page") Integer page,@PathVariable("size") Integer size){
         return scenicSpotService.findAllScenicSpots(page, size);

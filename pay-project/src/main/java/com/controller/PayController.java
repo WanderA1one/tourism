@@ -36,7 +36,8 @@ public class PayController {
     RedisTemplate redisTemplate;
     @Autowired
     ScenicSpotClient scenicSpotClient;
-
+    @Autowired
+    TokenUtils tokenUtils;
     //    @RequestMapping("/appoin{cert_id}")
 //    public List<AppPatiDoc> appoin(@PathVariable String cert_id){
 //        return iapds.getAppPatiDocByCert_id(cert_id);
@@ -55,19 +56,14 @@ public class PayController {
         return s1;
     }
 
+
     @RequestMapping("/test")
     public ResultList test(HttpServletRequest request) {
-//      Customer customerByToken = TokenUtils.findCustomerByToken(request);
-//      System.out.println(customerByToken);
-//        String date = ((String) map.get("date")).substring(0, 10);
-//        System.out.println(date);
-//        System.out.println(map.get("ticknum"));
-//        System.out.println(map.get("scenicSpotId"));
-        //-----------token---
+
         String cookie = request.getHeader("cookie");
         Cookie[] cookies = request.getCookies();
         System.out.println(cookies);
-        String token = TokenUtils.getToken(cookies);
+        String token = tokenUtils.getToken(cookies);
         System.out.println(token);
         ResultList resultList = new ResultList();
         resultList.setMessage(token);
@@ -77,19 +73,17 @@ public class PayController {
     @RequestMapping("/Alipay")
     public String pay(@RequestBody Map map, HttpServletRequest httpRequest, HttpServletResponse httpResponse) throws ServletException, IOException {
         //应用私钥（支付助手）  支付宝公钥
-
-
         AlipayClient alipayClient = new DefaultAlipayClient("https://openapi.alipaydev.com/gateway.do", "2021000118658603", "MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCply5jey5HHQJb21JCuINUHNJs9a9e7j3i867o5Ip01SXxPaGuv5ZWsGJkcuIrRbInY/YlORSX7pTUPkycM9nhYD84R+lH17UgTgCTTsGlQmowAmfW2AuT9HqGirti3AjcrFYnl3M3rgtJrlivXVeME6MKLMTKtMBJZbxwwWA+WUe33olpf44NFi4mpsQjxB7/OMc1aMPU7Nvb4czqrdz3O2+01JJJ62mrak5fE04gS0AcStTcNd+iFOIwntdMWTjIhifW+3VfC+04tgRFDIxaPHVKYfikBGFjM29g4eIDIYBwzr/mo9CAqKXxeaQD3LfOh2BwL7fwjHh4yslruHVfAgMBAAECggEAawuxTTvYhyypa3+xmcnLo5EZxYsCqiIpUBLOqdRwDLTp4S8s2he2dnuZb5wQZI32mOSA3xf7hrcinCHCy6ny8k6FOSoy9pUSkBSMSm8gzgZw7mLmVndCP57GpBv3kbwfn+Lr8sum/1NNbrGs6uw5MYLHm8mMYgLbiLi9zFJTRKaeQ8dw0JWKIhXKE/O6nUyWfAbwNN5er4c6JT3Q1yI0Y1r6pE8W9JoVYMUq6PPv8csLjV/8xw7lOjR5GjNQRij4zBHvhj8ZwAWsH8YuSEKnvGfZzFEPC0uBnTkyBlCLmANSUXt3THSWErgR7eh3Y2CELW0KTC066euKUk9/FGs7OQKBgQDxHQAsGDtGVWgw1RJr0DASyLXs9UYufTKa7B4DAdJ8EBaZP50UksXFd5Rpga/ft2KfvW3bzIB1NOjUu2v2gE3ElxuOANuqUf5S+vlerI9BdGHYqyqFfzJGgkWgFunK0tuJeGKJjQOkPBwBRKGzVXgRjASne3niUI2ZCqhiFDhl5QKBgQC0D7QJouQU4AK4uH1G5kNk6+AIDYjG5qB+MAIIPyr0DL41IL018WleWowlxOUuIBBXl1LjRXbMc6jUXVoSvEGfRV6sB43bFavN+wKxuO+n/cAWK1zIZpUkf0tF8blAxy/QYuKLS0Z2BtYyI25y80WXkyhtfFcuQYAeRoKwMYT58wKBgQC3vRfigly5TmBlxhmRm0bnKZipiIgA6Vtk/8YnGH5kGIaAJh/4C5k2z9eDR1bVLxSzElHji8Xgi39ajbDKWh/pThWrcy/ybSVX6vWZlfpdMOlXiaiPrsyLOr8ALjXfYCv4aIr+sz0xLLVSqhBnbxxekssBLnFFa4lcNOj4RNxtmQKBgDa5ZxBer08g3fLiL0DzDpyHi6km4+D/ituPH67988IEdXKUJq1UV5/TiTCZbMXd/NmCJjDolbiBllgknxF+obsUTDegfB6PsY2CskjtWfkGh/C08Rf/BWj4Pxpc4t6rKv78brnDAQEyBrtqRVEuWoI8uVa9KYnnYlbROzrtceq9AoGARMgULw7gTWPn3uRAOVrmHuxofrFnhNJp7onTiazSgtEhyKicCByLJAcZ2txboSTxlMy4eErfzo/I0HyVGCdR/UdreCx1CxwYAQYLoitxWTavmHFHMZ0HDVwdVpEbWj2YfOzcnSxCW/hYiWpG2wjabp0pSvoLvRYsd3MKfYS8LvA=", "json", "utf-8", "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA7kjpHb86UHmhj5u5UYctoR172ljs5X85mXYv3Ae2jegmnX6MPUsGEMO7JU4YLjX0igLwI1jdH3gBuzcPhOB3xq8J98D/5EonybnOYh1/2N+KIpbv+GudnrUQ6Yfw+wc8lyjqv41m1K63vrVN4l8uAiRny9SKxgN/Vscavb7haimEloey5k0RtCY5HTKiKWdSfSRCuvGqek+O7zLKALhuiuDSPIoSbdCQNWdj81dWMBdye+EssM/MPooeapvWWSotB3PBzG6zWqLTtMvAriOYvZDxuTf+mJgqAqM9+AyQI+ulPi3OaJ4OVjOlWUKEGhMTaAamlM0CC21VxGOo7HCMqwIDAQAB", "RSA2");   //获得初始化的AlipayClient
         AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest(); //创建API对应的request
+        Customer customerByToken = tokenUtils.findCustomerByToken(httpRequest);
+
         alipayRequest.setReturnUrl("http://localhost:8080/index");
         //支付宝回调接口
-        alipayRequest.setNotifyUrl("http://3b3663384p.qicp.vip/pay-project/pay/payReturn/"+6657); //在公共参数中设置回跳和通知地址
+        alipayRequest.setNotifyUrl("http://3b3663384p.qicp.vip/pay-project/pay/payReturn/"+customerByToken.getCustomerId()); //在公共参数中设置回跳和通知地址
         // alipayRequest.putOtherTextParam("app_auth_token", "201611BB8xxxxxxxxxxxxxxxxxxxedcecde6");//如果 ISV 代商家接入电脑网站支付能力，则需要传入 app_auth_token，使用第三方应用授权；自研开发模式请忽略
         // \"out_trade_no\":\"123456789009876542222222222\","  +
         //产生订单并且放入redis中
-        //Customer customerByToken = TokenUtils.findCustomerByToken(httpRequest);
-        Customer customerByToken = new Customer();
-        customerByToken.setCustomerId("6657");
+
 
         String scenicSpotId = (String) map.get("scenicSpotId");
         ScenicSpot scenicSpot = scenicSpotClient.findByScenicSpotId(scenicSpotId);

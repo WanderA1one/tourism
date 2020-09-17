@@ -30,7 +30,7 @@ public class QiniuUtils {
 
     public String upload(MultipartFile multipartFile){
         //构造一个带指定 Region 对象的配置类
-        Configuration cfg = new Configuration(Region.region0());
+        Configuration cfg = new Configuration(Region.region2());
         //...其他参数参考类注释
         UploadManager uploadManager = new UploadManager(cfg);
 

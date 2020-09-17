@@ -37,5 +37,4 @@ public class ScenicSpot {
     private String scenicSqotX;//景点X轴
     @Column(name = "scenic_sqot_y")
     private String scenicSqotY;//景点Y轴
-
 }

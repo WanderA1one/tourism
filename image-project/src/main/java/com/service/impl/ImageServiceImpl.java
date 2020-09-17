@@ -22,4 +22,10 @@ public class ImageServiceImpl implements ImgService {
         resultList.setList(all);
         return resultList;
     }
+
+    @Override
+    public List findByScenicSpotId(String ScenicSpotId) {
+        List byScenicSpotId = imageDao.findByScenicSpotId(ScenicSpotId);
+        return byScenicSpotId;
+    }
 }

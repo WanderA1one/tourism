@@ -13,12 +13,13 @@
         <module name="admin-project" />
         <module name="notice-project" />
         <module name="eureka-project" />
+        <module name="config-project" />
         <module name="order-project" />
         <module name="elasticSearch-project" />
         <module name="image-project" />
         <module name="customer-project" />
         <module name="zuul-project" />
-        <module name="config-project" />
+        <module name="send-project" />
         <module name="Scenicspot" />
         <module name="pay-project" />
         <module name="information-project" />
@@ -45,6 +46,7 @@
       <module name="pay-project" options="-parameters" />
       <module name="pojo-project" options="-parameters" />
       <module name="scenicSpot-project" options="-parameters" />
+      <module name="send-project" options="-parameters" />
       <module name="tourism" options="-parameters" />
       <module name="utils-project" options="-parameters" />
       <module name="zuul-project" options="-parameters" />

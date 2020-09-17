@@ -15,7 +15,6 @@ import java.util.Map;
 public class CommentController {
     @Autowired
     CommentService commentService;
-
     @RequestMapping("/findByScenicSpotId/{scenicSpotId}")
     public ResultList findyByScenicSpotId(@PathVariable("scenicSpotId") String scenicSpotId){
         ResultList resultList = new ResultList();
@@ -23,6 +22,7 @@ public class CommentController {
         resultList.setList(list);
         return resultList;
     }
+
     @RequestMapping("/saveComment")
     public void saveComment(@RequestBody Map map){
         String text = (String) map.get("text");

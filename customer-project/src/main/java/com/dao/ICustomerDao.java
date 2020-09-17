@@ -19,4 +19,5 @@ public interface ICustomerDao extends JpaRepository<Customer,String> {
     void deleteMoreCustomers(@Param("ids") List<String> ids);
     @Query(value = "select count(*) from Customer",nativeQuery = true)
     Integer getCountOfCustomers();
+    Customer findByCustomerEmail(String customerEmail);
 }

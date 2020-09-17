@@ -18,5 +18,5 @@ eureka:
     service-url:
       defaultZone: http://localhost:8081/eureka
 ribbon:
-  ReadTimeOut: 10000
-  ConnectTimeOut: 10000
+  ReadTimeout: 10000
+  ConnectTimeout: 10000

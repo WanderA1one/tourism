@@ -4,17 +4,18 @@ import com.alibaba.fastjson.JSONObject;
 import com.pojo.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Component;
 
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
-
+@Component
 public class TokenUtils {
     @Autowired
-    private static RedisTemplate redisTemplate;
+    private RedisTemplate redisTemplate;
 
-    public static Customer findCustomerByToken(HttpServletRequest request){
+    public Customer findCustomerByToken(HttpServletRequest request){
         Cookie[] cookies = request.getCookies();
         String token = getToken(cookies);
         Object o = redisTemplate.opsForValue().get(token);
@@ -22,9 +23,10 @@ public class TokenUtils {
         Object o1 = JSONObject.toJSON(o);
         Customer customer = JSONObject.parseObject(o1.toString(), Customer.class);
         return customer;
+
     }
 
-    public static String getToken(Cookie[] cookies){
+    public String getToken(Cookie[] cookies){
         if(cookies!=null){
             for (Cookie x:cookies
             ) {
